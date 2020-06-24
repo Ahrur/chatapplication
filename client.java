@@ -13,22 +13,28 @@ public class client {
 
             while (!msgin.equals("end")){
                 msgout = br.readLine();
-                char[] msgouten = msgout.toCharArray();
-                for(char c : msgouten){
-                    c+=5;
+                String msgouten = new String();
+                String msginen = new String();
+                char c;
+                for(int i=0; i<msgout.length(); i++){
+                    c = msgout.charAt(i);
+                    c = (char) ((int)c - 1);
+                    msgouten += Character.toString(c);
                 }
-                dout.writeUTF(msgout);
+                dout.writeUTF(msgouten);
 
                 msgin = din.readUTF();
-                char[] msginen = msgout.toCharArray();
-                for(char c : msginen){
-                    c-=5;
+                char e;
+                for(int j=0; j<msgin.length(); j++){
+                    e = msgin.charAt(j);
+                    e = (char) ((int)e + 1);
+                    msginen += Character.toString(e);
                 }
-                System.out.println(msgin);
+                System.out.println("Server: "+msginen);
             }
 
         }catch (Exception e){
-
+            // do some exception handling
         }
     }
 }
